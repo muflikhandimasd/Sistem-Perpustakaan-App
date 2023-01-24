@@ -11,6 +11,7 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
+        <a class="btn btn-primary" href="{{ route('anggota.create') }}">Create Anggota</a>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -19,24 +20,21 @@
                     <th scope="col">Jenis Kelamin</th>
                     <th scope="col">Alamat</th>
                     <th scope="col">No. Telepon</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($anggotas as $anggota)
                     <tr>
-                        <th scope="row">{{ $anggota->id }}</th>
+                        <th scope="row">{{ ++$i }}</th>
                         <td>{{ $anggota->nama_anggota }}</td>
                         <td>{{ $anggota->jenis_kelamin }}</td>
                         <td>{{ $anggota->alamat }}</td>
                         <td>{{ $anggota->telp }}</td>
-                        <td>
-                            <form action="{{ route('perpustakaans/anggotas') }}" method="Post">
-                                <a class="btn btn-primary" href="/">Edit</a>
-                                @csrf
-
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
+                        <td><a class="btn btn-primary" href="{{ route('anggota.edit', $anggota->id) }}">Edit</a>
+                            <a class="btn btn-danger" href="{{ route('anggota.delete', $anggota->id) }}">Delete</a>
                         </td>
+
 
                     </tr>
                 @endforeach

@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left mb-2">
-                    <h2>Tambah Anggota</h2>
+                    <h2>{{ $title }}</h2>
                 </div>
                 <div class="pull-right">
                     <a class="btn btn-primary" href="{{ route('anggota.index') }}"> Kembali</a>
@@ -17,7 +17,7 @@
         </div>
         @if ($errors->any())
             <div class="alert alert-danger">
-                Ada Error<br><br>
+                There were some problems with your input.<br><br>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -26,13 +26,14 @@
             </div>
         @endif
 
-        <form action="{{ route('anggota.store') }}" method="POST" enctype="multipart/form-data">
+
+        <form action="{{ route('anggota.update', $anggota->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Nama Anggota:</strong>
-                        <input type="text" name="nama_anggota" class="form-control" placeholder="Nama Anggota">
+                        <input type="text" name="nama_anggota" class="form-control" value="{{ $anggota->nama_anggota }}">
 
                     </div>
                 </div>
@@ -41,26 +42,32 @@
                     <div class="form-group">
                         <strong>Jenis Kelamin:</strong>
 
-                        <select name="jenis_kelamin">
+                        <select name="jenis_kelamin" value="{{ $anggota->nama_anggota }}">
 
                             <option value="L">Laki-Laki</option>
                             <option value="P">Perempuan</option>
                         </select>
-
+                        @error('jenis_kelamin')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Alamat:</strong>
-                        <input type="text" name="alamat" class="form-control" placeholder="Alamat">
-
+                        <input type="text" name="alamat" class="form-control" placeholder="Alamat"
+                            value="{{ $anggota->alamat }}">
+                        @error('alamat')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>No. HP:</strong>
-                        <input type="text" name="telp" class="form-control" placeholder="No. HP">
+                        <input type="text" name="telp" class="form-control" placeholder="No. HP"
+                            value="{{ $anggota->telp }}">
 
                     </div>
                 </div>
