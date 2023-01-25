@@ -15,7 +15,7 @@ use App\Http\Controllers\WEB\WebAnggotaController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.main');
 });
 Route::prefix('/perpustakaans')->group(function () {
 
