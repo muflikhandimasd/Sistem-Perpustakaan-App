@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('/') }}plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('/') }}dist/css/adminlte.min.css">
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -27,10 +28,13 @@
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{ asset('/') }}index3.html" class="nav-link">Home</a>
+                    <a href="{{ url('/') }}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
+                    <a href="{{ route('anggota.index') }}" class="nav-link">Anggota</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="{{ route('petugas.index') }}" class="nav-link">Petugas</a>
                 </li>
             </ul>
 
@@ -77,7 +81,7 @@
                                         <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
                                     </h3>
                                     <p class="text-sm">Call me whenever you can...</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> LALUo</p>
                                 </div>
                             </div>
                             <!-- Message End -->
@@ -181,7 +185,7 @@
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
+                        <a href="#" class="d-block">Muflikhan Dimas</a>
                     </div>
                 </div>
 

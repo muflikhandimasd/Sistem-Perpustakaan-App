@@ -24,6 +24,8 @@ use App\Http\Controllers\API\PeminjamanController;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
+Route::get('/create_banyak', [AnggotaController::class, 'createAnggotaBanyak']);
 Route::prefix('/perpustakaans')->group(function () {
     Route::post('/raks', [RakController::class, 'create']);
     Route::post('/anggotas', [AnggotaController::class, 'create']);

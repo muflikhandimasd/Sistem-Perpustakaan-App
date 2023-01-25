@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\Anggota;
+use App\Jobs\AnggotaJob;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -33,6 +34,24 @@ class AnggotaController extends Controller
         return response()->json([
             'status' => true,
             'data' => $anggota
+        ]);
+    }
+
+    public function createAnggotaBanyak()
+    {
+        $startTime = microtime(true);
+
+        // ! JOB
+        $job = new AnggotaJob();
+        $this->dispatch($job);
+
+        $endTime = microtime(true);
+
+        $rangeTime = $endTime - $startTime;
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Data selesai dibuat dalam ' . $rangeTime . ' detik'
         ]);
     }
 }
