@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Rak;
+use App\Models\Buku;
 use App\Models\Anggota;
 use App\Models\Petugas;
 use App\Models\Penerbit;
@@ -31,6 +32,7 @@ class DatabaseSeeder extends Seeder
         // Petugas::factory(200)->create();
         // Pengarang::factory(200)->create();
         // Penerbit::factory(200)->create();
-        Rak::factory(200)->create();
+        // Rak::factory(200)->create();
+        Buku::factory(200)->create();
     }
 }

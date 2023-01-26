@@ -16,17 +16,23 @@ class WebBukuController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->only(['judul_buku', 'tahun_terbit', 'jumlah', 'isbn', 'pengarang_id', 'penerbit_id', 'rak_id']);
-        Pengarang::findOrFail($input['pengarang_id']);
-s
-        Penerbit::findOrFail($input['penerbit_id']);
 
 
-        Rak::findOrFail($input['rak_id']);
+        if (isset($input['pengarang_id'])) {
+            Pengarang::findOrFail($input['pengarang_id']);
+        }
+        if (isset($input['penerbit_id'])) {
+            Penerbit::findOrFail($input['penerbit_id']);
+        }
+
+        if (isset($input['rak_id'])) {
+            Rak::findOrFail($input['rak_id']);
+        }
+
         $buku = Buku::findOrFail($id);
         $buku->update($input);
 
-        return redirect()->route('')
-
+        return redirect()->route('buku.index')->with('success', 'buku berhasil dibuat');
     }
 
     public function create()
@@ -72,6 +78,6 @@ s
     {
         $bukus = Buku::latest()->paginate(10);
         $title = 'Buku';
-        return view('buku.index', compact('bukus', 'title'));
+        return view('buku.index', compact('bukus', 'title'))->with('i', (request()->query('page', 1) - 1) * 10);
     }
 }

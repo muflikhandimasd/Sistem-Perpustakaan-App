@@ -11,28 +11,38 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-        <a class="btn btn-primary" href="{{ route('penerbit.create') }}">Create penerbit</a>
+        <a class="btn btn-primary" href="{{ route('buku.create') }}">Create buku</a>
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col" width="1%">No.</th>
-                    <th scope="col" width="15%">Nama penerbit</th>
+                    <th scope="col" width="15%">Nama buku</th>
 
-                    <th scope="col">Alamat</th>
-                    <th scope="col">No. Telepon</th>
+                    <th scope="col">Tahun Terbit</th>
+                    <th scope="col">Jumlah</th>
+                    <th scope="col">ISBN</th>
+                    <th scope="col">Nama Penerbit</th>
+                    <th scope="col">Nama Pengarang</th>
+                    <th scope="col">Kode Rak</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($penerbits as $penerbit)
+                @foreach ($bukus as $buku)
                     <tr>
                         <th scope="row">{{ ++$i }}</th>
-                        <td>{{ $penerbit->nama_penerbit }}</td>
+                        <td>{{ $buku->judul_buku }}</td>
 
-                        <td>{{ $penerbit->alamat }}</td>
-                        <td>{{ $penerbit->telp }}</td>
-                        <td><a class="btn btn-primary" href="{{ route('penerbit.edit', $penerbit->id) }}">Edit</a>
-                            <a class="btn btn-danger" href="{{ route('penerbit.destroy', $penerbit->id) }}">Delete</a>
+                        <td>{{ $buku->tahun_terbit }}</td>
+                        <td>{{ $buku->jumlah }}</td>
+                        <td>{{ $buku->isbn }}</td>
+
+                        <td>{{ $buku->penerbit->nama_penerbit }}</td>
+                        <td>{{ $buku->pengarang->nama_pengarang }}</td>
+                        <td>{{ $buku->rak->kode_rak }}</td>
+
+                        <td><a class="btn btn-primary" href="{{ route('buku.edit', $buku->id) }}">Edit</a>
+                            <a class="btn btn-danger" href="{{ route('buku.destroy', $buku->id) }}">Delete</a>
                         </td>
 
 
@@ -42,7 +52,7 @@
         </table>
 
         <div class="d-flex">
-            {!! $penerbits->links() !!}
+            {!! $bukus->links() !!}
         </div>
     </div>
 @endsection

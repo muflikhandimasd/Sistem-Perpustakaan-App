@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WEB\WebRakController;
+use App\Http\Controllers\WEB\WebBukuController;
 use App\Http\Controllers\WEB\WebAnggotaController;
 use App\Http\Controllers\WEB\WebPetugasController;
 use App\Http\Controllers\WEB\WebPenerbitController;
@@ -18,9 +19,7 @@ use App\Http\Controllers\WEB\WebPengarangController;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.main');
-});
+Route::get('/', [WebAnggotaController::class, 'index']);
 Route::prefix('/perpustakaans')->group(function () {
 
     Route::prefix('/anggotas')->group(function () {
@@ -67,5 +66,14 @@ Route::prefix('/perpustakaans')->group(function () {
         Route::get('/edit/{id}', [WebRakController::class, 'edit'])->name('rak.edit');
         Route::post('/update/{id}', [WebRakController::class, 'update'])->name('rak.update');
         Route::get('/delete/{id}', [WebRakController::class, 'destroy'])->name('rak.destroy');
+    });
+
+    Route::prefix('/bukus')->group(function () {
+        Route::get('/', [WebBukuController::class, 'index'])->name('buku.index');
+        Route::get('/create', [WebBukuController::class, 'create'])->name('buku.create');
+        Route::post('/', [WebBukuController::class, 'store'])->name('buku.store');
+        Route::get('/edit/{id}', [WebBukuController::class, 'edit'])->name('buku.edit');
+        Route::post('/update/{id}', [WebBukuController::class, 'update'])->name('buku.update');
+        Route::get('/delete/{id}', [WebBukuController::class, 'destroy'])->name('buku.destroy');
     });
 });

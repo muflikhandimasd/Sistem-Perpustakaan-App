@@ -24,5 +24,53 @@ with font-awesome or any other icon font library -->
             </a>
         </li>
 
+        {{-- !Rak --}}
+
+        <li class="nav-item">
+            <a href="{{ route('rak.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    Rak
+
+                </p>
+            </a>
+        </li>
+
+
+        {{-- !Penerbit --}}
+        <li class="nav-item">
+            <a href="{{ route('penerbit.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    Penerbit
+
+                </p>
+            </a>
+        </li>
+
+
+        {{-- !Pengarang --}}
+        <li class="nav-item">
+            <a href="{{ route('pengarang.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    Pengarang
+
+                </p>
+            </a>
+        </li>
+
+
+        {{-- !Pengarang --}}
+        <li class="nav-item">
+            <a href="{{ route('buku.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    Buku
+
+                </p>
+            </a>
+        </li>
+
     </ul>
 </nav>
