@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left mb-2">
-                    <h2>Tambah penerbit</h2>
+                    <h2>Tambah buku</h2>
                 </div>
                 <div class="pull-right">
                     <a class="btn btn-primary" href="{{ route('anggota.index') }}"> Kembali</a>
@@ -26,36 +26,49 @@
             </div>
         @endif
 
-        <form action="{{ route('penerbit.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('buku.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Nama penerbit:</strong>
-                        <input type="text" name="nama_penerbit" class="form-control" placeholder="Nama penerbit">
+                        <strong>Judul buku:</strong>
+                        <input type="text" name="judul_buku" class="form-control" placeholder="Judul buku">
 
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Tahun Terbit:</strong>
+                            <input type="text" name="tahun_terbit" class="form-control" placeholder="Tahun Terbit">
 
-
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Alamat:</strong>
-                        <input type="text" name="alamat" class="form-control" placeholder="Alamat">
-
+                        </div>
                     </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>No. HP:</strong>
-                        <input type="text" name="telp" class="form-control" placeholder="No. HP">
 
-                    </div>
-                </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Jumlah:</strong>
+                                <input type="text" name="jumlah" class="form-control" placeholder="Tahun Terbit">
 
-                <button type="submit" class="btn btn-primary ml-3">Submit</button>
-            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <strong>ISBN:</strong>
+                                    <input type="text" name="tahun_terbit" class="form-control"
+                                        placeholder="Tahun Terbit">
+
+                                </div>
+                            </div>
+
+
+
+
+                            <button type="submit" class="btn btn-primary ml-3">Submit</button>
+                        </div>
         </form>
     </div>
 @endsection
