@@ -38,13 +38,24 @@ class WebBukuController extends Controller
     public function create()
     {
         $title = 'Tambah Buku';
-        return view('anggota.create', compact('title'));
+        $pengarangs = Pengarang::all();
+        $penerbits = Penerbit::all();
+        $raks = Rak::all();
+        return view('buku.create', compact('title', 'pengarangs', 'penerbits', 'raks',));
     }
 
     public function edit($id)
     {
         $title = 'Edit Buku';
-        return view('buku.edit', compact('title'));
+        $buku = Buku::findOrFail($id);
+        $pengarangs = Pengarang::all();
+        $penerbits = Penerbit::all();
+        $raks = Rak::all();
+        $pengarangData = Pengarang::findOrFail($buku->pengarang_id);
+        $penerbitData = Penerbit::findOrFail($buku->penerbit_id);
+        $rakData = Penerbit::findOrFail($buku->rak_id);
+
+        return view('buku.edit', compact('title', 'pengarangs', 'pengarangData', 'penerbits', 'penerbitData', 'raks', 'rakData', 'buku'));
     }
 
     public function store(Request $request)
@@ -78,6 +89,14 @@ class WebBukuController extends Controller
     {
         $bukus = Buku::latest()->paginate(10);
         $title = 'Buku';
+
         return view('buku.index', compact('bukus', 'title'))->with('i', (request()->query('page', 1) - 1) * 10);
+    }
+
+    public function destroy($id)
+    {
+        $buku = Buku::findOrFail($id);
+        $buku->delete();
+        return redirect()->route('buku.index')->with('success', 'buku berhasil dihapus');
     }
 }
