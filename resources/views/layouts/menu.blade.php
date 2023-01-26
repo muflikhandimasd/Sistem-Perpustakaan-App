@@ -3,14 +3,25 @@
         <!-- Add icons to the links using the .nav-icon class
 with font-awesome or any other icon font library -->
         <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+            <a href="{{ route('anggota.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
                 <p>
-                    Dashboard
-                    <i class="right fas fa-angle-left"></i>
+                    Anggota
+
                 </p>
             </a>
+        </li>
 
+
+        {{-- !PETUGAS --}}
+        <li class="nav-item">
+            <a href="{{ route('petugas.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    Petugas
+
+                </p>
+            </a>
         </li>
 
     </ul>

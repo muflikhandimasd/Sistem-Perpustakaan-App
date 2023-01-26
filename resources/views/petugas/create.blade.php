@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layouts.main')
 @section('title')
     <title>{{ $title }}</title>
 @endsection
