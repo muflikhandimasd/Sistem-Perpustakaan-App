@@ -23,16 +23,27 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($peminjamanDetails as $peminjamanDetail)
+                @foreach ($peminjamans as $peminjaman)
                     <tr>
                         <th scope="row">{{ ++$i }}</th>
-                        <td>{{ $peminjamanDetail->tanggal_pinjam }}</td>
-                        <td>{{ $peminjamanDetail->nama_petugas }}</td>
-                        <td>{{ $peminjamanDetail->nama_anggota }}</td>
-                        <td>{{ $peminjamanDetail->judul_buku }}</td>
-                        <td><a class="btn btn-primary" href="{{ route('peminjaman.edit', $peminjamanDetail->id) }}">Edit</a>
-                            <a class="btn btn-danger"
-                                href="{{ route('peminjaman.destroy', $peminjamanDetail->id) }}">Delete</a>
+                        <td>{{ $peminjaman->tanggal_pinjam }}</td>
+                        <td>{{ $peminjaman->petugas->nama_petugas }}</td>
+                        <td>{{ $peminjaman->anggota->nama_anggota }}</td>
+
+                        @if (count($peminjaman->bukus) > 0)
+                            <td>
+                                <ul>
+                                    @foreach ($peminjaman->bukus as $buku)
+                                        <li>{{ $buku->judul_buku }}</li>
+                                    @endforeach
+                                </ul>
+                            </td>
+                        @else
+                            <td></td>
+                        @endif
+
+                        <td><a class="btn btn-primary" href="{{ route('peminjaman.edit', $peminjaman->id) }}">Edit</a>
+                            <a class="btn btn-danger" href="{{ route('peminjaman.destroy', $peminjaman->id) }}">Delete</a>
                         </td>
 
 
@@ -42,7 +53,7 @@
         </table>
 
         <div class="d-flex">
-            {!! $peminjamanDetails->links() !!}
+            {!! $peminjamans->links() !!}
         </div>
     </div>
 @endsection

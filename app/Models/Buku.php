@@ -27,6 +27,6 @@ class Buku extends Model
 
     public function peminjamans()
     {
-        return $this->belongsToMany(Peminjaman::class, 'peminjaman_details')->withTimestamps();;
+        return $this->belongsToMany(Peminjaman::class, 'peminjaman_details', 'buku_id', 'peminjaman_id')->withTimestamps();;
     }
 }
