@@ -6,6 +6,7 @@ use App\Models\Anggota;
 use App\Models\Petugas;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 
 class WebPeminjamanController extends Controller
@@ -25,6 +26,11 @@ class WebPeminjamanController extends Controller
 
 
         $peminjaman = Peminjaman::findOrFail($id);
+        if (isset($input['tanggal_pinjam'])) {
+            $formatted = Carbon::parse($input['tanggal_pinjam'])->format('Y-m-d');
+
+            $input['tanggal_pinjam'] = $formatted;
+        }
 
         $peminjaman->update($input);
         return redirect()->route('peminjaman.index')->with('success', 'Peminjaman berhasil diupdate');
@@ -47,6 +53,10 @@ class WebPeminjamanController extends Controller
             'petugas_id' => 'required',
         ]);
 
+        $formatted = Carbon::parse($input['tanggal_pinjam'])->format('Y-m-d');
+
+        $input['tanggal_pinjam'] = $formatted;
+
 
         Anggota::findOrFail($input['anggota_id']);
 
@@ -63,13 +73,16 @@ class WebPeminjamanController extends Controller
     {
         $peminjamans = Peminjaman::latest()->paginate(10);
         $title = 'Peminjaman';
-        return view('peminjaman.index', compact('peminjamans', 'title'));
+        return view('peminjaman.index', compact('peminjamans', 'title'))->with('i', (request()->query('page', 1) - 1) * 10);
     }
 
-    public function edit()
+    public function edit($id)
     {
         $title = 'Peminjaman Buku';
-        return view('peminjaman.edit', compact('titlr'));
+        $peminjaman = Peminjaman::findOrFail($id);
+        $anggotas = Anggota::all();
+        $petugas = Petugas::all();
+        return view('peminjaman.edit', compact('title', 'peminjaman', 'anggotas', 'petugas'));
     }
 
     public function destroy($id)

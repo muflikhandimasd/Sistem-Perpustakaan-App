@@ -47,9 +47,7 @@
                             <option value="L">Laki-Laki</option>
                             <option value="P">Perempuan</option>
                         </select>
-                        @error('jenis_kelamin')
-                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                        @enderror
+
                     </div>
                 </div>
 
@@ -58,9 +56,7 @@
                         <strong>Alamat:</strong>
                         <input type="text" name="alamat" class="form-control" placeholder="Alamat"
                             value="{{ $anggota->alamat }}">
-                        @error('alamat')
-                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                        @enderror
+
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">

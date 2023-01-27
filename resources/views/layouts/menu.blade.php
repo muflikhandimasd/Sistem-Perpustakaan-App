@@ -72,5 +72,38 @@ with font-awesome or any other icon font library -->
             </a>
         </li>
 
+        {{-- !Pengarang --}}
+        <li class="nav-item">
+            <a href="{{ route('peminjaman.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    Peminjaman
+
+                </p>
+            </a>
+        </li>
+
+        {{-- !Pengarang --}}
+        <li class="nav-item">
+            <a href="{{ route('pengembalian.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    Pengembalian
+
+                </p>
+            </a>
+        </li>
+
+
+        {{-- !Pengarang --}}
+        <li class="nav-item">
+            <a href="{{ route('peminjaman_detail.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    Peminjaman Detail
+
+                </p>
+            </a>
+        </li>
     </ul>
 </nav>

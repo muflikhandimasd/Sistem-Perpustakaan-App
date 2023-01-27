@@ -7,6 +7,9 @@ use App\Http\Controllers\WEB\WebAnggotaController;
 use App\Http\Controllers\WEB\WebPetugasController;
 use App\Http\Controllers\WEB\WebPenerbitController;
 use App\Http\Controllers\WEB\WebPengarangController;
+use App\Http\Controllers\WEB\WebPeminjamanController;
+use App\Http\Controllers\WEB\WebPengembalianController;
+use App\Http\Controllers\WEB\WebPeminjamanDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,5 +78,33 @@ Route::prefix('/perpustakaans')->group(function () {
         Route::get('/edit/{id}', [WebBukuController::class, 'edit'])->name('buku.edit');
         Route::post('/update/{id}', [WebBukuController::class, 'update'])->name('buku.update');
         Route::get('/delete/{id}', [WebBukuController::class, 'destroy'])->name('buku.destroy');
+    });
+
+    Route::prefix('/peminjamans')->group(function () {
+        Route::get('/', [WebPeminjamanController::class, 'index'])->name('peminjaman.index');
+        Route::get('/create', [WebPeminjamanController::class, 'create'])->name('peminjaman.create');
+        Route::post('/', [WebPeminjamanController::class, 'store'])->name('peminjaman.store');
+        Route::get('/edit/{id}', [WebPeminjamanController::class, 'edit'])->name('peminjaman.edit');
+        Route::post('/update/{id}', [WebPeminjamanController::class, 'update'])->name('peminjaman.update');
+        Route::get('/delete/{id}', [WebPeminjamanController::class, 'destroy'])->name('peminjaman.destroy');
+    });
+
+    Route::prefix('/peminjaman_details')->group(function () {
+        Route::get('/', [WebPeminjamanDetailController::class, 'index'])->name('peminjaman_detail.index');
+        // Route::get('/create', [Webpeminjaman_detailController::class, 'create'])->name('peminjaman_detail.create');
+        // Route::post('/', [Webpeminjaman_detailController::class, 'store'])->name('peminjaman_detail.store');
+        // Route::get('/edit/{id}', [Webpeminjaman_detailController::class, 'edit'])->name('peminjaman_detail.edit');
+        // Route::post('/update/{id}', [Webpeminjaman_detailController::class, 'update'])->name('peminjaman_detail.update');
+        // Route::get('/delete/{id}', [Webpeminjaman_detailController::class, 'destroy'])->name('peminjaman_detail.destroy');
+    });
+
+
+    Route::prefix('/pengembalians')->group(function () {
+        Route::get('/', [WebPengembalianController::class, 'index'])->name('pengembalian.index');
+        Route::get('/create', [WebPengembalianController::class, 'create'])->name('pengembalian.create');
+        Route::post('/', [WebPengembalianController::class, 'store'])->name('pengembalian.store');
+        Route::get('/edit/{id}', [WebPengembalianController::class, 'edit'])->name('pengembalian.edit');
+        Route::post('/update/{id}', [WebPengembalianController::class, 'update'])->name('pengembalian.update');
+        Route::get('/delete/{id}', [WebPengembalianController::class, 'destroy'])->name('pengembalian.destroy');
     });
 });

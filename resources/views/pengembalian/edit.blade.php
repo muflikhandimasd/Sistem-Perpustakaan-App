@@ -11,7 +11,7 @@
                     <h2>{{ $title }}</h2>
                 </div>
                 <div class="pull-right">
-                    <a class="btn btn-primary" href="{{ route('buku.index') }}"> Kembali</a>
+                    <a class="btn btn-primary" href="{{ route('peminjaman.index') }}"> Kembali</a>
                 </div>
             </div>
         </div>
@@ -27,61 +27,44 @@
         @endif
 
 
-        <form action="{{ route('buku.update', $buku->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('peminjaman.update', $peminjaman->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Nama buku:</strong>
-                        <input type="text" name="judul_buku" class="form-control" value="{{ $buku->judul_buku }}">
+                        <strong>Tanggal Peminjaman:</strong>
+                        <input type="date" name="tanggal_pinjam" value="{{ $peminjaman->tanggal_pinjam }}"
+                            class="form-control" placeholder="Tanggal Peminjaman" min="1997-01-01" max="2030-12-31">
 
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Tahun terbit:</strong>
-                        <input type="text" name="tahun_terbit" class="form-control" value="{{ $buku->tahun_terbit }}">
+                        <strong>Petugas:</strong>
+
+                        <select class="form-select" name="petugas_id">
+
+                            @foreach ($petugas as $pet)
+                                <option value="{{ $pet->id }}">{{ $pet->nama_petugas }}</option>
+                            @endforeach
+
+                        </select>
 
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Jumlah:</strong>
-                        <input type="text" name="jumlah" class="form-control" value="{{ $buku->jumlah }}">
+                        <strong>anggota:</strong>
 
-                    </div>
-                </div>
+                        <select class="form-select" name="anggota_id">
 
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>ISBN:</strong>
-                        <input type="text" name="isbn" class="form-control" value="{{ $buku->isbn }}">
+                            @foreach ($anggotas as $anggota)
+                                <option value="{{ $anggota->id }}">{{ $anggota->nama_anggota }}</option>
+                            @endforeach
 
-                    </div>
-                </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Penerbit:</strong>
-                        <input type="text" name="penerbit_id" class="form-control" value="{{ $buku->penerbit->id }}">
-
-                    </div>
-                </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Pengarang:</strong>
-                        <input type="text" name="pengarang_id" class="form-control" value="{{ $buku->pengarang->id }}">
-
-                    </div>
-                </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Rak:</strong>
-                        <input type="text" name="rak_id" class="form-control" value="{{ $buku->rak->id }}">
+                        </select>
 
                     </div>
                 </div>

@@ -11,4 +11,13 @@ class Anggota extends Model
 
 
     protected $guarded = [];
+    public function peminjamans()
+    {
+        return $this->hasMany(Peminjaman::class);
+    }
+
+    public function pengembalians()
+    {
+        return $this->hasMany(Pengembalian::class);
+    }
 }

@@ -11,38 +11,47 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-        <a class="btn btn-primary" href="{{ route('buku.create') }}">Create buku</a>
+        <a class="btn btn-primary" href="{{ route('pengembalian.create') }}">Create pengembalian</a>
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col" width="1%">No.</th>
-                    <th scope="col" width="15%">Nama buku</th>
+                    <th scope="col" width="15%">Tanggal Pengembalian</th>
+                    <th scope="col">Denda</th>
+                    <th scope="col">Judul Buku</th>
+                    <th scope="col">Nama Anggota</th>
 
-                    <th scope="col">Tahun Terbit</th>
-                    <th scope="col">Jumlah</th>
-                    <th scope="col">ISBN</th>
-                    <th scope="col">Nama Penerbit</th>
-                    <th scope="col">Nama Pengarang</th>
-                    <th scope="col">Kode Rak</th>
+                    <th scope="col">Nama Petugas</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($bukus as $buku)
+                @foreach ($pengembalians as $pengembalian)
                     <tr>
                         <th scope="row">{{ ++$i }}</th>
-                        <td>{{ $buku->judul_buku }}</td>
+                        <td>{{ \Carbon\Carbon::parse($pengembalian->tanggal_pengembalian)->format('d-m-Y') }}</td>
+                        <td>{{ $pengembalian->denda }}</td>
 
-                        <td>{{ $buku->tahun_terbit }}</td>
-                        <td>{{ $buku->jumlah }}</td>
-                        <td>{{ $buku->isbn }}</td>
+                        @if (count($pengembalian->peminjaman->bukus) > 0)
+                            <td>
+                                <ul>
+                                    @foreach ($pengembalian->peminjaman->bukus as $buku)
+                                        <li>{{ $buku->judul_buku }}</li>
+                                    @endforeach
+                                </ul>
+                            </td>
+                        @else
+                            <td></td>
+                        @endif
 
-                        <td>{{ $buku->penerbit->nama_penerbit }}</td>
-                        <td>{{ $buku->pengarang->nama_pengarang }}</td>
-                        <td>{{ $buku->rak->kode_rak }}</td>
 
-                        <td><a class="btn btn-primary" href="{{ route('buku.edit', $buku->id) }}">Edit</a>
-                            <a class="btn btn-danger" href="{{ route('buku.destroy', $buku->id) }}">Delete</a>
+                        <td>{{ $pengembalian->anggota->nama_anggota }}</td>
+
+                        <td>{{ $pengembalian->petugas->nama_petugas }}</td>
+
+                        <td><a class="btn btn-primary" href="{{ route('pengembalian.edit', $pengembalian->id) }}">Edit</a>
+                            <a class="btn btn-danger"
+                                href="{{ route('pengembalian.destroy', $pengembalian->id) }}">Delete</a>
                         </td>
 
 
@@ -52,7 +61,7 @@
         </table>
 
         <div class="d-flex">
-            {!! $bukus->links() !!}
+            {!! $pengembalians->links() !!}
         </div>
     </div>
 @endsection

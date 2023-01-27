@@ -34,7 +34,7 @@ class WebAnggotaController extends Controller
         $anggotas = Anggota::latest()->paginate(10);
         $title = 'Anggota';
 
-        return view('anggota.index', compact('anggotas', 'title'))->with('i', (request()->query('page', 1) - 1) * 10);;
+        return view('anggota.index', compact('anggotas', 'title'))->with('i', (request()->query('page', 1) - 1) * 10);
     }
 
     public function destroy($id)

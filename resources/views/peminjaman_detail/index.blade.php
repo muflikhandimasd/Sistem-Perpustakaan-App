@@ -17,26 +17,22 @@
                 <tr>
                     <th scope="col" width="1%">No.</th>
                     <th scope="col" width="15%">Tanggal Pinjam</th>
-                    <th scope="col">Tanggal Kembali</th>
-
-                    <th scope="col">Nama Anggota</th>
-
                     <th scope="col">Nama Petugas</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Nama Anggota</th>
+                    <th scope="col">Judul Buku</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($peminjamans as $peminjaman)
+                @foreach ($peminjamanDetails as $peminjamanDetail)
                     <tr>
                         <th scope="row">{{ ++$i }}</th>
-                        <td>{{ \Carbon\Carbon::parse($peminjaman->tanggal_pinjam)->format('d-m-Y') }}</td>
-                        <td>{{ $peminjaman->tanggal_kembali }}</td>
-                        <td>{{ $peminjaman->anggota->nama_anggota }}</td>
-
-                        <td>{{ $peminjaman->petugas->nama_petugas }}</td>
-
-                        <td><a class="btn btn-primary" href="{{ route('peminjaman.edit', $peminjaman->id) }}">Edit</a>
-                            <a class="btn btn-danger" href="{{ route('peminjaman.destroy', $peminjaman->id) }}">Delete</a>
+                        <td>{{ $peminjamanDetail->tanggal_pinjam }}</td>
+                        <td>{{ $peminjamanDetail->nama_petugas }}</td>
+                        <td>{{ $peminjamanDetail->nama_anggota }}</td>
+                        <td>{{ $peminjamanDetail->judul_buku }}</td>
+                        <td><a class="btn btn-primary" href="{{ route('peminjaman.edit', $peminjamanDetail->id) }}">Edit</a>
+                            <a class="btn btn-danger"
+                                href="{{ route('peminjaman.destroy', $peminjamanDetail->id) }}">Delete</a>
                         </td>
 
 
@@ -46,7 +42,7 @@
         </table>
 
         <div class="d-flex">
-            {!! $peminjamans->links() !!}
+            {!! $peminjamanDetails->links() !!}
         </div>
     </div>
 @endsection
